@@ -88,9 +88,9 @@ const Infor = () => {
     };
 
   return (
-    <div className='w-full h-full shadow'>
-        <div className='lg:max-w-2xl md:max-w-120 max-w-120 text-[18px] md:text-[20px] px-10'>
-            <form onSubmit={handleSubmit} className='w-full border text-center p-4'>
+    <div className='w-full h-full'>
+        <div className='lg:max-w-2xl md:max-w-120 max-w-5xl text-[18px] md:text-[20px] md:px-10'>
+            <form onSubmit={handleSubmit} className='w-full text-center p-4 shadow-2xl'>
                 {['username', 'description', 'email'].map((field) => (
                     <div key={field} className='w-full py-2 flex font-bold'>
                         <label>

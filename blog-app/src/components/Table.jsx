@@ -33,12 +33,12 @@ const Table = ({users, setFormData, setIsEditing, setEditId, getAllData}) => {
   };
 
   return (
-    <div className='pt-6 font-bold text-2xl'>
+    <div className='mt-16 font-bold text-2xl shadow-2xl'>
       {/* <Search /> */}
       <form >
-        <table className='border py-4'>
-          <thead className="border">
-            <tr className="py-6 text-3xl">
+        <table className='w-full border-gray-200'>
+          <thead className="border border-gray-200">
+            <tr className="text-3xl">
               <th>S/N</th>
               <th>Name</th>
               <th>Description</th>
@@ -52,24 +52,24 @@ const Table = ({users, setFormData, setIsEditing, setEditId, getAllData}) => {
                 key={user.id}
                 className="p-2 justify-evenly"
               >
-                <td>{user.id}</td>
-                <td>{user.username}</td>
-                <td>{user.description}</td>
-                <td>{user.email}</td>
-                <td>
+                <td className="border border-gray-200">{user.id}</td>
+                <td className="border border-gray-200">{user.username}</td>
+                <td className="border border-gray-200">{user.description}</td>
+                <td className="border border-gray-200">{user.email}</td>
+                <td className="border border-gray-200">
                   <button
                     type="button"
                     onClick={() => handleUpdate(user)}
-                    className="rounded-2xl bg-green-400 p-2"
+                    className="rounded-2xl bg-green-400 text-white text-[14px] p-1.5"
                   >
-                    Update
+                    Edit
                   </button>
                 </td>
-                <td>
+                <td className="border border-gray-300">
                   <button
                     type="button"
                     onClick={() => handleDelete(user.id)}
-                    className="rounded-2xl bg-red-600 p-2"
+                    className="rounded-2xl bg-red-600 text-white text-[14px] p-1.5"
                   >Delete</button>
                 </td>
               </tr>
