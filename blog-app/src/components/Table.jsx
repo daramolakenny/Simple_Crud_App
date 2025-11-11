@@ -32,6 +32,11 @@ const Table = ({users, setFormData, setIsEditing, setEditId, getAllData}) => {
     setEditId(user.id);
   };
 
+  // mongoose.connect(
+  //     "mongodb+srv://daramolakenny18:<@mongo2000$>@blog-app.5tl8jgl.mongodb.net/"
+  // ).then(() => console.log('Database connected successfully'))
+  //  .catch((e) => console.log("Error ->", e));
+
   return (
     <div className='mt-16 font-bold text-2xl shadow-2xl'>
       {/* <Search /> */}
