@@ -34,7 +34,6 @@ export const getUsers = async (req, res) => {
 };
 
 export const getSingleUser= async(req, res) => {
-    console.log(first)
     const {id} = req.params;
     try {
         const user = await userModel.findById(id);
@@ -46,5 +45,36 @@ export const getSingleUser= async(req, res) => {
         console.log(error);
         res.status(500).json({message: "Internal server error"});
     }
-}
+};
 
+export const updateUser = async (req, res) => {
+    const {id} =req.params;
+    const { name, description, email} = req.body;
+    try {
+        const updateUser = await userModel.findByIdAndUpdate(id,
+            {name, description, email},
+            {new: true}
+        )
+        if(!updateUser){
+            return res.status(404).json({message: "User not found"});
+        }
+        res.status(200).json({message: "User updated successfully", user: updateUser});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: "Internal server error"});
+    }
+};
+
+export const deleteUser = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const deleteUser = await userModel.findByIdAndDelete(id);
+        if(!deleteUser){
+            return res.status(404).json({message: "User not found"});
+        }
+        res.status(200).json({message: "User deleted successfully"});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: "Internal server error"})
+    }
+}
