@@ -3,7 +3,7 @@ import Table from './Table';
 
 const Infor = () => {
     const [formData, setFormData] = useState({
-        username: '',
+        name: '',
         description: '',
         email: ''
     });
@@ -23,7 +23,7 @@ const Infor = () => {
       // Read
   const getAllData = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/user", {
+      const res = await fetch("http://localhost:3000/api/users", {
         method: "GET",
         headers: {
           "Content-type": "application/json"
@@ -55,7 +55,7 @@ const Infor = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const method = isEditing ? 'PUT' : 'POST';
-        const url = isEditing ? `http://localhost:3000/api/user/${editId}` : 'http://localhost:3000/api/user';
+        const url = isEditing ? `http://localhost:3000/api/users/${editId}` : 'http://localhost:3000/api/users';
 
         try {
             console.log("Editing user:", users);
@@ -76,7 +76,7 @@ const Infor = () => {
             if(response.ok){
                 console.log('successful');
                 alert(isEditing ? 'User updated successfully!' : 'Data submitted successfully!');
-                setFormData({ username: '', description: '', email: '' });
+                setFormData({ name: '', description: '', email: '' });
                 setIsEditing(false);
                 setEditId(null);
                 getAllData();
@@ -91,7 +91,7 @@ const Infor = () => {
     <div className='w-full h-full'>
         <div className='lg:max-w-2xl md:max-w-120 max-w-5xl text-[18px] md:text-[20px] md:px-10'>
             <form onSubmit={handleSubmit} className='w-full text-center p-4 shadow-2xl'>
-                {['username', 'description', 'email'].map((field) => (
+                {['name', 'description', 'email'].map((field) => (
                     <div key={field} className='w-full py-2 flex font-bold'>
                         <label>
                             {field.charAt(0).toUpperCase() + field.slice(1)}:
@@ -112,7 +112,7 @@ const Infor = () => {
                     {isEditing && (
                         <button
                             onClick={() => {
-                                setFormData({username: '', description: '', email: '' });
+                                setFormData({name: '', description: '', email: '' });
                                 setIsEditing(false);
                                 setEditId(null);
                             }}

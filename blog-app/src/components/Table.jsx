@@ -5,7 +5,7 @@ const Table = ({users, setFormData, setIsEditing, setEditId, getAllData}) => {
   // Delete
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/user/${id}`, {
+      const res = await fetch(`http://localhost:3000/api/users/${id}`, {
          method: 'DELETE'
       });
       if(!res.ok){
@@ -24,18 +24,13 @@ const Table = ({users, setFormData, setIsEditing, setEditId, getAllData}) => {
   const handleUpdate = (user) => {
     console.log("Editing user:", user);
     setFormData({
-      username: user.username,
+      name: user.name,
       description: user.description,
       email: user.email
     });
     setIsEditing(true);
     setEditId(user.id);
   };
-
-  // mongoose.connect(
-  //     "mongodb+srv://daramolakenny18:<@mongo2000$>@blog-app.5tl8jgl.mongodb.net/"
-  // ).then(() => console.log('Database connected successfully'))
-  //  .catch((e) => console.log("Error ->", e));
 
   return (
     <div className='mt-16 font-bold text-2xl shadow-2xl'>
@@ -58,7 +53,7 @@ const Table = ({users, setFormData, setIsEditing, setEditId, getAllData}) => {
                 className="p-2 justify-evenly"
               >
                 <td className="border border-gray-200">{user.id}</td>
-                <td className="border border-gray-200">{user.username}</td>
+                <td className="border border-gray-200">{user.name}</td>
                 <td className="border border-gray-200">{user.description}</td>
                 <td className="border border-gray-200">{user.email}</td>
                 <td className="border border-gray-200">

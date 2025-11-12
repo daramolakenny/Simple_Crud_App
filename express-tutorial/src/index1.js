@@ -2,6 +2,7 @@ import express from "express";
 import {} from "express-validator";
 import cors from "cors";
 import { connectDb } from "./db/database.js";
+import router from "./route/userRouter.js";
 
 
 const app = express();
@@ -46,22 +47,6 @@ app.get("/api/user", (req, res) => {
     }
 });
 
-// create or add new data in the database
-// app.post("/api/user", (req, res) => {
-//     const {username, displayName, email} = req.body;
-//     if(!username || !displayName || !email){
-//         return res.json({message: "Username, display Name and Email are required!"})
-//     } else{
-//         const newUser = {
-//             id: mockUsers.length + 1,
-//             displayName,
-//             username,
-//             email,
-//         }
-//         mockUsers.push(newUser);
-//         return res.sendStatus(201).json(mockUsers);
-//     };
-// });
 let updateIndex = 0;
 app.post("/api/user", loginMiddleware, (req, res) => {
     console.log("Received data:", req.body);
@@ -82,8 +67,6 @@ app.post("/api/user", loginMiddleware, (req, res) => {
   mockUsers.push(newUser);
   return res.status(201).json({ message: "User registered", user: newUser });
 });
-
-
 
 // update the database
 app.put("/api/user/:id", (req, res) => {
@@ -122,6 +105,10 @@ app.delete("/api/user/:id", (req, res) => {
     mockUsers.splice(findUserIndex, 1);
     res.sendStatus(204);
 });
+
+
+
+app.use("/api", router);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
