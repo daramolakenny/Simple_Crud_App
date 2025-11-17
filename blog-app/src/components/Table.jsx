@@ -1,17 +1,20 @@
-import { useState, useEffect } from "react";
+
 
 const Table = ({users, setFormData, setIsEditing, setEditId, getAllData}) => {
 
   // Delete
   const handleDelete = async (id) => {
     try {
+      console.log("Deleting user with ID:", id);
       const res = await fetch(`http://localhost:3000/api/users/${id}`, {
-         method: 'DELETE'
+         method: 'DELETE',
+         headers: {
+          'Content-type': 'application/json'
+         }
       });
       if(!res.ok){
         throw new Error(`Fail to delete user ${res.status}`);
       }
-
       const result = await res.json();
       console.log('Deleted', result);
       alert('User deleted successfully!');
@@ -29,7 +32,7 @@ const Table = ({users, setFormData, setIsEditing, setEditId, getAllData}) => {
       email: user.email
     });
     setIsEditing(true);
-    setEditId(user.id);
+    setEditId(user._id);
   };
 
   return (
@@ -68,7 +71,7 @@ const Table = ({users, setFormData, setIsEditing, setEditId, getAllData}) => {
                 <td className="border border-gray-300">
                   <button
                     type="button"
-                    onClick={() => handleDelete(user.id)}
+                    onClick={() => handleDelete(user._id)}
                     className="rounded-2xl bg-red-600 text-white text-[14px] p-1.5"
                   >Delete</button>
                 </td>

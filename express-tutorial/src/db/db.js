@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         trim: true
     }
-})
+});
 
 const userModel = mongoose.model('User', userSchema);
 

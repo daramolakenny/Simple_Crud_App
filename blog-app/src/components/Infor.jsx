@@ -58,6 +58,10 @@ const Infor = () => {
         const url = isEditing ? `http://localhost:3000/api/users/${editId}` : 'http://localhost:3000/api/users';
 
         try {
+            if(!formData.email.includes('@')){
+                alert('Please enter a valid email address');
+                return;
+            }
             console.log("Editing user:", users);
             console.log("Form data before submit:", formData);
             console.log('Submitting:', formData);
@@ -69,10 +73,6 @@ const Infor = () => {
                 body: JSON.stringify(formData)
             });
 
-            if(!formData.email.includes('@')){
-                alert('Please enter a valid email address');
-            }
-
             if(response.ok){
                 console.log('successful');
                 alert(isEditing ? 'User updated successfully!' : 'Data submitted successfully!');
@@ -80,7 +80,7 @@ const Infor = () => {
                 setIsEditing(false);
                 setEditId(null);
                 getAllData();
-            }
+            } 
         } catch (error) {
             console.error(error);
             alert('Something went wrong.');

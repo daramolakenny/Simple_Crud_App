@@ -12,5 +12,3 @@ export const connectDb = async () => {
     process.exit(1);                                     
   }
 }
- 
-// "mongodb+srv://essentialng23:mN7tBifRDCClp2BC@cluster0.bgpf6.mongodb.net/Ejobs?retryWrites=true&w=majority&appName=Cluster0"

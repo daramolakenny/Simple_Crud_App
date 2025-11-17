@@ -3,6 +3,7 @@ import {} from "express-validator";
 import cors from "cors";
 import { connectDb } from "./db/database.js";
 import router from "./route/userRouter.js";
+import { query } from "express-validator";
 
 
 const app = express();
@@ -105,8 +106,6 @@ app.delete("/api/user/:id", (req, res) => {
     mockUsers.splice(findUserIndex, 1);
     res.sendStatus(204);
 });
-
-
 
 app.use("/api", router);
 
